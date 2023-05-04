@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    body {
+        background: #F5F5DC;
+    }
+
+    .content {
+        max-width: 400px;
+        margin: auto;
+        vertical-align: middle;
+        background: white;
+        padding: 10px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
+
 <body>
+<div class="content">
+<h1>Please log in:</h1>
 <form name="f" method="post" action="/process_login">
     <input type="hidden" th:name="${_csrf.getParameterName()}" th:value="${_csrf.getToken()}"/>
 
@@ -21,5 +37,10 @@
     </div>
 
 </form>
+<br/>
+<h2>
+    <a href="/auth/reg">Or Sign up</a>
+</h2>
+</div>
 </body>
 </html>
