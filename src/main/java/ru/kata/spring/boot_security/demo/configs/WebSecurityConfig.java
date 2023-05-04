@@ -27,16 +27,19 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/", "/index").permitAll()
+                                .requestMatchers("/", "/welcome", "/auth/reg").permitAll()
                                 .anyRequest().authenticated())
-                .formLogin().successHandler(successUserHandler)
+                .formLogin()
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/process_login")
+                .successHandler(successUserHandler)
                 .permitAll()
+                .failureUrl("/auth/login?error")
                 .and()
                 .logout()
                 .permitAll();
         return http.build();
     }
-
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -50,5 +53,4 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
