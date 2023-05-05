@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.reposirories.UserRepository;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
 import java.security.Principal;
@@ -16,11 +15,9 @@ import java.security.Principal;
 @Controller
 public class UserController {
     private final UserService us;
-    private final UserRepository userRepository;
 
-    public UserController(UserService us, UserRepository userRepository) {
+    public UserController(UserService us) {
         this.us = us;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/admin")
@@ -55,15 +52,8 @@ public class UserController {
     }
     @DeleteMapping("/user")
     public String deleteUser(Principal principal) {
-        User user = userRepository.findByUsername(principal.getName());
+        User user = us.findByUsername(principal.getName());
         us.delete(user.getId());
         return "redirect:/auth/login";
     }
-
-    @PatchMapping("/hhh")
-    public String changeNameToBom(@ModelAttribute("user") User user) {
-        userRepository.save(user);
-        return "user";
-    }
-
 }

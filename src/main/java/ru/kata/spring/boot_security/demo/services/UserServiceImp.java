@@ -37,6 +37,10 @@ public class UserServiceImp implements UserService {
         userRepository.save(user1);
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     @Transactional
     @Override
     public void delete(Long id) {
