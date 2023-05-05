@@ -16,13 +16,11 @@ public class UserServiceImp implements UserService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
     @Override
     public List<User> getUserList() {
         return userRepository.findAll();
     }
 
-    @Transactional
     @Override
     public User show(Long id) {
         return userRepository.getReferenceById(id);
