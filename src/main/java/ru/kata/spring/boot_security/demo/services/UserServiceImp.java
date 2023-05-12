@@ -28,11 +28,6 @@ public class UserServiceImp implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public User show(Long id) {
-        return userRepository.getReferenceById(id);
-    }
-
     @Transactional
     @Override
     public void update(Long id, User updUser) {
