@@ -22,9 +22,8 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         User user = (User) target;
-        User user1 = service.findByUserName(user.getUsername());
-        if (user1 != null)
-            errors.rejectValue("username", "", "This name was already use");
+        User user1 = service.findByEmail(user.getEmail());
+        if (user1 != null) errors.rejectValue("email", "", "This email was already use");
 
     }
 }

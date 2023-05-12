@@ -30,31 +30,38 @@ public class User {
     private Long id;
     @NotEmpty
     @Column
-    private String username;
-    @NotEmpty
+    private String email;
     @Column
     private String password;
-    @NotEmpty
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     @Column
-    private String email;
-
+    private int age;
     @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
+    public String getRoleString() {
+        StringBuilder sb = new StringBuilder();
+        roles.forEach(role -> sb.append(role.getName().replaceAll("ROLE_", " ")));
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && username.equals(user.username) && password.equals(user.password) && Objects.equals(email, user.email) && Objects.equals(roles, user.roles);
+        return age == user.age && id.equals(user.id) && email.equals(user.email) && password.equals(user.password) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, email, roles);
+        return Objects.hash(id, email, password, firstName, lastName, age, roles);
     }
 }
 

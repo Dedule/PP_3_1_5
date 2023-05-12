@@ -23,7 +23,7 @@ public class RegService {
 
     public void register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(!roleRepository.existsByName("ROLE_USER")) {
+        if (!roleRepository.existsByName("ROLE_USER")) {
             roleRepository.save(new Role("ROLE_USER"));
             roleRepository.save(new Role("ROLE_ADMIN"));
         }

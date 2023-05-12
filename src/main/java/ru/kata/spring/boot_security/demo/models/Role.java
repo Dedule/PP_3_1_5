@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.Objects;
 
@@ -17,7 +16,6 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Table(name = "roles")
 public class Role {
@@ -37,6 +35,11 @@ public class Role {
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
         return id.equals(role.id) && name.equals(role.name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override
