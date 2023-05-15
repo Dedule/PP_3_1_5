@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kata.spring.boot_security.demo.models.User;
-import ru.kata.spring.boot_security.demo.services.RegService;
+import ru.kata.spring.boot_security.demo.services.RegistrationService;
 import ru.kata.spring.boot_security.demo.util.PersonValidator;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
     private final PersonValidator validator;
-    private final RegService regService;
+    private final RegistrationService regService;
 
-    public AuthController(PersonValidator validator, RegService regService) {
+    public AuthController(PersonValidator validator, RegistrationService regService) {
         this.validator = validator;
         this.regService = regService;
     }
