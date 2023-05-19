@@ -18,4 +18,5 @@ public interface UserService {
     List<Role> getAllRoles();
 
     void addUser(User user);
+    User getUser(Long id);
 }
