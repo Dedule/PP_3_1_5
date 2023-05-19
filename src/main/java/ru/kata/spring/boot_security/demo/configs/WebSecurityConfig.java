@@ -30,7 +30,6 @@ public class WebSecurityConfig {
                         auth -> auth
                                 .requestMatchers("/admin**").hasRole("ADMIN")
                                 .requestMatchers("/user").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers("/auth/reg").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin()
                 .loginPage("/auth/login")
